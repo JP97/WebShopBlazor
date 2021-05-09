@@ -1,0 +1,32 @@
+﻿@using WebShopBlazor.Data
+<h3>ListComponent</h3>
+
+@if (Cart == null)
+{
+    <div class="m-auto">Empty</div>
+}
+else
+{
+    <ul>
+        @foreach (Product p in Cart)
+        {
+            <li class="list-group-item d-flex flex-row justify-content-between">
+                <p>@p.Name</p>
+                <p>@p.Category</p>
+                <p>@p.Price</p>
+                <span class="oi oi-x"></span>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    [Parameter]
+    public Product[] Cart { get; set; }
+
+    ////private EventCallback Remove(int id)
+    //{
+    //    //Cart = Cart.Where(item => item.ID != id);
+    //    //return Cart;
+    //}
+}

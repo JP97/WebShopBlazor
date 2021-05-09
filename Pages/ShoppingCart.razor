@@ -1,0 +1,16 @@
+﻿@page "/shoppingcart"
+@using WebShopBlazor.Data
+@inject ProductService ProductService
+
+<h3>Your ShoppingCart</h3>
+
+<ListComponent Cart="products"></ListComponent>
+
+@code {
+    private Product[] products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = await ProductService.GetProductAsync();
+    }
+}
