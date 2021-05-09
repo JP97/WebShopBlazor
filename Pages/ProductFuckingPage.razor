@@ -1,5 +1,21 @@
-﻿<h3>ProductFuckingPage</h3>
+﻿@page "/products"
+@using WebShopBlazor.Data
+@inject ProductService ProductService
 
-@code {
 
-}
+    <h1>Product overview</h1>
+    <p>just some more crap</p>
+
+    @*<h3>ProductFuckingPage</h3>*@
+
+    <CardComponent Products="products"></CardComponent>
+
+
+    @code {
+        private Product[] products;
+
+        protected override async Task OnInitializedAsync()
+        {
+            products = await ProductService.GetProductAsync();
+        }
+    }
