@@ -1,0 +1,52 @@
+@page "/products"
+
+@using WebShopBlazor.Data
+@inject ProductService ProductService
+<h1>Product overview</h1>
+<p>just some more crap</p>
+
+@* some stupid user experience stuff *@
+
+@if (products == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                @foreach (var p in products)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="..." alt="Product-image">
+                        <div class="card-body">
+                            <h5 class="card-title">Name</h5>
+                            <p class="card-text">@p.Name</p>
+                            <h6 class="card-text">Price: </h6>
+                            <p class="card-text">@p.Price kr</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+
+
+}
+
+
+
+
+
+@code{
+    private Product[] products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = await ProductService.GetProductAsync();
+    }
+}
